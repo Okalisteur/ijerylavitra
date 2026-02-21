@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Équipe — i-Jery Lavitra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #1a56f0;
+            --blue-dark: #0f3bbf;
+            --blue-light: #e8efff;
+            --blue-mid: #c5d6ff;
+            --green: #00b87c;
+            --green-light: #e0f7f0;
+            --white: #ffffff;
+            --off-white: #f5f7ff;
+            --text: #0d1a3a;
+            --text-muted: #64748b;
+            --border: rgba(26,86,240,0.12);
+            --shadow-sm: 0 2px 8px rgba(13,26,58,0.06), 0 8px 24px rgba(13,26,58,0.06);
+            --shadow-md: 0 8px 32px rgba(26,86,240,0.12), 0 20px 60px rgba(13,26,58,0.1);
+            --shadow-lg: 0 16px 60px rgba(26,86,240,0.18), 0 32px 80px rgba(13,26,58,0.12);
+            --marquee-height: 36px;
+            --nav-height: 68px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+        /* ── MARQUEE ── */
+        .marquee-bar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+            height: var(--marquee-height);
+            background: linear-gradient(90deg, var(--blue), #3b82f6, var(--green), var(--blue));
+            background-size: 300% 100%;
+            animation: gradShift 8s linear infinite;
+            overflow: hidden; display: flex; align-items: center;
+        }
+        @keyframes gradShift { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+        .marquee-track { display: flex; align-items: center; animation: marqueeScroll 28s linear infinite; white-space: nowrap; }
+        @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-item {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; font-weight: 500; letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.92); text-transform: uppercase; padding: 0 2.5rem;
+        }
+        .marquee-item .m-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: var(--marquee-height); width: 100%; z-index: 1000;
+            padding: 1rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            min-height: var(--nav-height);
+        }
+        .logo-text h1 { font-size: 1.3rem; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
+        .logo-text p { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--green); letter-spacing: 2px; margin-top: 1px; }
+
+        .nav-back {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 1.3rem; border: 1.5px solid var(--border);
+            border-radius: 100px; background: white; transition: all 0.25s;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-back:hover { color: var(--blue); border-color: rgba(26,86,240,0.3); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+        .nav-back svg { width: 16px; height: 16px; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 75vh;
+            padding: calc(var(--marquee-height) + var(--nav-height) + 5rem) 3rem 5rem;
+            background: linear-gradient(160deg, #edf2ff 0%, #e8efff 45%, #edfdf8 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .hero-floor {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+            background-image:
+                linear-gradient(rgba(26,86,240,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,86,240,0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(800px) rotateX(60deg);
+            transform-origin: bottom center;
+            mask-image: linear-gradient(to top, rgba(0,0,0,0.4), transparent 80%);
+        }
+        .orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(70px); opacity: 0.55; }
+        .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(26,86,240,0.18), transparent 70%); top: -150px; right: -100px; animation: orbDrift 14s ease-in-out infinite; }
+        .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,184,124,0.15), transparent 70%); bottom: -80px; left: -80px; animation: orbDrift 18s ease-in-out infinite reverse; }
+        @keyframes orbDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-20px,25px) scale(1.04); } 66% { transform: translate(25px,-15px) scale(0.97); } }
+
+        .hero-inner { position: relative; z-index: 2; max-width: 700px; }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: white; border: 1.5px solid var(--border);
+            color: var(--blue); border-radius: 100px;
+            padding: 0.4rem 1.1rem; font-size: 0.75rem;
+            font-weight: 600; letter-spacing: 0.8px;
+            margin-bottom: 1.8rem; box-shadow: var(--shadow-sm);
+            animation: fadeUp 0.7s ease both 0.2s;
+        }
+        .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); position: relative; }
+        .pulse-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: rgba(0,184,124,0.3); animation: pulseDot 1.8s ease-in-out infinite; }
+        @keyframes pulseDot { 0%,100% { transform:scale(1); opacity:0.6; } 50% { transform:scale(1.8); opacity:0; } }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.05;
+            letter-spacing: -2px; color: var(--text); margin-bottom: 1.2rem;
+            animation: fadeUp 0.7s ease both 0.4s;
+        }
+        .hero h1 em { font-style: normal; color: var(--blue); }
+        .hero p {
+            font-size: 1.05rem; color: var(--text-muted); line-height: 1.85;
+            animation: fadeUp 0.7s ease both 0.6s;
+        }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+        /* ── SECTION BANNER ── */
+        .section-banner {
+            overflow: hidden; height: 52px;
+            background: var(--off-white);
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center;
+        }
+        .section-banner.blue-banner { background: var(--blue); }
+        .banner-track { display: flex; align-items: center; animation: bannerScroll 22s linear infinite; white-space: nowrap; }
+        .banner-track.reverse { animation: bannerScrollRev 22s linear infinite; }
+        @keyframes bannerScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+        @keyframes bannerScrollRev { 0% { transform:translateX(-50%); } 100% { transform:translateX(0); } }
+        .banner-item {
+            display: inline-flex; align-items: center; gap: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted); padding: 0 2rem; font-weight: 500;
+        }
+        .blue-banner .banner-item { color: rgba(255,255,255,0.85); }
+        .banner-sep { width: 20px; height: 1px; background: currentColor; opacity: 0.3; flex-shrink: 0; }
+
+        /* ── MEMBERS SECTION ── */
+        .members-section { padding: 0; }
+
+        .member-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 540px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .member-panel:nth-child(odd) { background: var(--white); }
+        .member-panel:nth-child(even) { direction: rtl; background: var(--off-white); }
+        .member-panel:nth-child(even) > * { direction: ltr; }
+        .member-panel:hover { background: #f0f4ff; }
+        .member-panel:nth-child(even):hover { background: #edf7f2; }
+
+        /* Visual half */
+        .member-visual {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .member-panel:nth-child(1) .member-visual { background: linear-gradient(135deg, #e8efff 0%, #d0ddff 100%); }
+        .member-panel:nth-child(2) .member-visual { background: linear-gradient(135deg, #e0f7f0 0%, #c2efdf 100%); }
+        .member-panel:nth-child(3) .member-visual { background: linear-gradient(135deg, #fff8e8 0%, #fdedc5 100%); }
+        .member-panel:nth-child(4) .member-visual { background: linear-gradient(135deg, #f3eeff 0%, #e4d5ff 100%); }
+
+        /* Grid pattern overlay */
+        .member-visual::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(26,86,240,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,240,0.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .member-panel:nth-child(2) .member-visual::before { background-image: linear-gradient(rgba(0,184,124,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,184,124,0.07) 1px, transparent 1px); background-size: 30px 30px; }
+        .member-panel:nth-child(3) .member-visual::before { background-image: linear-gradient(rgba(201,160,50,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(201,160,50,0.08) 1px, transparent 1px); background-size: 30px 30px; }
+        .member-panel:nth-child(4) .member-visual::before { background-image: linear-gradient(rgba(139,92,246,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.07) 1px, transparent 1px); background-size: 30px 30px; }
+
+        .portrait-wrap { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
+        .portrait-rings { position: relative; width: 220px; height: 220px; }
+        .portrait-rings::before {
+            content: ''; position: absolute; inset: -28px; border-radius: 50%;
+            border: 1.5px dashed rgba(26,86,240,0.2);
+            animation: rotateSlow 30s linear infinite;
+        }
+        .portrait-rings::after {
+            content: ''; position: absolute; inset: -52px; border-radius: 50%;
+            border: 1px dashed rgba(26,86,240,0.1);
+            animation: rotateSlow 50s linear infinite reverse;
+        }
+        .member-panel:nth-child(2) .portrait-rings::before { border-color: rgba(0,184,124,0.25); }
+        .member-panel:nth-child(2) .portrait-rings::after { border-color: rgba(0,184,124,0.12); }
+        .member-panel:nth-child(3) .portrait-rings::before { border-color: rgba(201,160,50,0.25); }
+        .member-panel:nth-child(3) .portrait-rings::after { border-color: rgba(201,160,50,0.12); }
+        .member-panel:nth-child(4) .portrait-rings::before { border-color: rgba(139,92,246,0.25); }
+        .member-panel:nth-child(4) .portrait-rings::after { border-color: rgba(139,92,246,0.12); }
+        @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+        .portrait-circle {
+            width: 220px; height: 220px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            box-shadow: 0 24px 60px rgba(26,86,240,0.14), 0 0 0 2px rgba(255,255,255,0.9);
+            color: rgba(13,26,58,0.62); /* icon stroke color default */
+        }
+        .member-panel:nth-child(1) .portrait-circle { background: linear-gradient(135deg, var(--blue-light), #b8cfff); color: rgba(26,86,240,0.62); }
+        .member-panel:nth-child(2) .portrait-circle { background: linear-gradient(135deg, var(--green-light), #a8edda); color: rgba(0,184,124,0.62); }
+        .member-panel:nth-child(3) .portrait-circle { background: linear-gradient(135deg, #fff3d0, #fde4a0); color: rgba(201,160,50,0.62); }
+        .member-panel:nth-child(4) .portrait-circle { background: linear-gradient(135deg, #f3eeff, #ddc8ff); color: rgba(139,92,246,0.62); }
+
+        .portrait-circle::after { content: ''; position: absolute; top: -20%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%); border-radius: 50%; }
+
+        .portrait-ico{
+            width: 92px;
+            height: 92px;
+            display: block;
+            color: currentColor;
+            filter: drop-shadow(0 10px 22px rgba(13,26,58,0.12));
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Frame number */
+        .frame-number {
+            position: absolute; bottom: 20px; right: 20px; z-index: 2;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.52rem; letter-spacing: 3px;
+            color: rgba(13,26,58,0.2);
+        }
+
+        /* Accent line at bottom of visual */
+        .visual-line { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+        .member-panel:nth-child(1) .visual-line { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+        .member-panel:nth-child(2) .visual-line { background: linear-gradient(90deg, transparent, var(--green), transparent); }
+        .member-panel:nth-child(3) .visual-line { background: linear-gradient(90deg, transparent, #c9a030, transparent); }
+        .member-panel:nth-child(4) .visual-line { background: linear-gradient(90deg, transparent, #8b5cf6, transparent); }
+
+        /* Content half */
+        .member-content {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 5rem 4.5rem; position: relative;
+        }
+        .member-content::before {
+            content: ''; position: absolute; top: 10%; bottom: 10%; width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+        }
+        .member-panel:nth-child(odd) .member-content::before { left: 0; }
+        .member-panel:nth-child(even) .member-content::before { right: 0; }
+
+        .big-index {
+            font-family: 'Outfit', sans-serif; font-size: 7rem; font-weight: 900;
+            line-height: 1; opacity: 0.05; position: absolute;
+            right: 3rem; top: 50%; transform: translateY(-55%); pointer-events: none;
+            color: var(--blue);
+        }
+        .member-panel:nth-child(2) .big-index { color: var(--green); }
+        .member-panel:nth-child(3) .big-index { color: #c9a030; }
+        .member-panel:nth-child(4) .big-index { color: #8b5cf6; }
+
+        .member-meta {
+            display: flex; align-items: center; gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .meta-line { width: 32px; height: 1.5px; background: var(--border); }
+        .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+
+        .role-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+            padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1.2rem; width: fit-content;
+        }
+        .member-panel:nth-child(1) .role-badge { color: var(--blue); background: var(--blue-light); border: 1px solid rgba(26,86,240,0.2); }
+        .member-panel:nth-child(2) .role-badge { color: var(--green); background: var(--green-light); border: 1px solid rgba(0,184,124,0.2); }
+        .member-panel:nth-child(3) .role-badge { color: #a07020; background: #fff3d0; border: 1px solid rgba(201,160,50,0.25); }
+        .member-panel:nth-child(4) .role-badge { color: #7c3aed; background: #f3eeff; border: 1px solid rgba(139,92,246,0.2); }
+
+        .member-name {
+            font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800;
+            letter-spacing: -1.5px; color: var(--text); margin-bottom: 0.3rem; line-height: 1;
+        }
+        .member-sub { font-size: 1rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; }
+        .member-bio { font-size: 0.92rem; line-height: 1.85; color: var(--text-muted); max-width: 380px; margin-bottom: 2.5rem; font-weight: 400; }
+
+        .member-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.56rem; letter-spacing: 1.5px;
+            padding: 0.25rem 0.7rem; border-radius: 4px;
+            background: var(--off-white); border: 1px solid var(--border);
+            color: var(--text-muted); text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .member-panel:hover .tag { border-color: rgba(26,86,240,0.2); color: var(--blue); background: var(--blue-light); }
+        .member-panel:nth-child(2):hover .tag { border-color: rgba(0,184,124,0.2); color: var(--green); background: var(--green-light); }
+
+        /* Reveal */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── CLOSING CTA ── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--blue) 0%, #2563eb 60%, #1e40af 100%);
+            text-align: center; padding: 7rem 3rem; position: relative; overflow: hidden;
+        }
+        .cta-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.07); top: 50%; left: 50%; }
+        .cr1 { width: 500px; height: 500px; transform: translate(-50%,-50%); animation: crPulse 5s ease-in-out infinite; }
+        .cr2 { width: 750px; height: 750px; transform: translate(-50%,-50%); animation: crPulse 5s ease-in-out infinite 1.2s; }
+        .cr3 { width: 1000px; height: 1000px; transform: translate(-50%,-50%); animation: crPulse 5s ease-in-out infinite 2.4s; }
+        @keyframes crPulse { 0%,100% { opacity:0.4; transform:translate(-50%,-50%) scale(1); } 50% { opacity:0.9; transform:translate(-50%,-50%) scale(1.04); } }
+        .cta-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px); background-size: 30px 30px; }
+        .cta-inner { position: relative; z-index: 1; }
+        .cta-section h2 { font-size: 2.8rem; font-weight: 900; color: white; margin-bottom: 1rem; letter-spacing: -1px; }
+        .cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; }
+        .btn-white {
+            background: white; color: var(--blue); padding: 1rem 2.8rem; border-radius: 100px;
+            text-decoration: none; font-weight: 800; font-size: 0.95rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2); transition: all 0.3s; display: inline-block;
+        }
+        .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+
+        /* ── FOOTER ── */
+        footer { background: var(--text); padding: 4rem 3rem 2rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; }
+        .footer-section h3 { font-size: 0.85rem; font-weight: 700; color: white; letter-spacing: 0.5px; margin-bottom: 1.5rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.38); text-decoration: none; display: block; margin-bottom: 0.6rem; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-section a:hover { color: rgba(255,255,255,0.85); }
+        .footer-bottom {
+            max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.78rem; color: rgba(255,255,255,0.22);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .member-panel { grid-template-columns: 1fr; min-height: auto; }
+            .member-panel:nth-child(even) { direction: ltr; }
+            .member-visual { height: 340px; }
+            .member-content { padding: 3rem 2rem; }
+            .member-name { font-size: 2.4rem; }
+            .portrait-rings { width: 180px; height: 180px; }
+            .portrait-circle { width: 180px; height: 180px; }
+            .portrait-ico { width: 76px; height: 76px; }
+            nav { padding: 0.85rem 1.5rem; }
+            .hero { padding: calc(var(--marquee-height) + var(--nav-height) + 3rem) 1.5rem 4rem; }
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2rem; }
+            .cta-section h2 { font-size: 1.9rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══ MARQUEE ══ -->
+    <div class="marquee-bar">
+        <div class="marquee-track" id="topMarquee"></div>
+    </div>
+
+    <!-- ══ NAV ══ -->
+    <nav>
+        <div class="logo-text">
+            <h1>i-Jery Lavitra</h1>
+            <p>// LES FONDATEURS</p>
+        </div>
+        <a href="index.html" class="nav-back">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Retour à l'accueil
+        </a>
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero">
+        <div class="hero-floor"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">
+                <span class="pulse-dot"></span>
+                i-Jery Lavitra · Antsirabe · 2024
+            </div>
+            <h1>L'Équipe <em>Fondatrice</em></h1>
+            <p>Quatre âmes unies par une vision commune — construire une jeunesse malgache consciente et responsable.</p>
+        </div>
+    </section>
+
+    <!-- ══ BANNER ══ -->
+    <div class="section-banner">
+        <div class="banner-track" id="banner1"></div>
+    </div>
+
+    <!-- ══ MEMBERS ══ -->
+    <section class="members-section">
+
+        <!-- MAHEFA -->
+        <div class="member-panel reveal">
+            <div class="member-visual">
+                <div class="portrait-wrap">
+                    <div class="portrait-rings">
+                        <div class="portrait-circle" aria-hidden="true">
+                            <!-- Graduation cap -->
+                            <svg class="portrait-ico" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 8l9-5 9 5-9 5-9-5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M6 10v6c0 1.5 3 3 6 3s6-1.5 6-3v-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M21 9v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-line"></div>
+                <div class="frame-number">FRAME 001 / 004</div>
+            </div>
+            <div class="member-content">
+                <div class="big-index">01</div>
+                <div class="member-meta">
+                    <span class="meta-line"></span>
+                    <span class="meta-label">Membre 01 / 04</span>
+                </div>
+                <div class="role-badge">● Président</div>
+                <h2 class="member-name">Mahefa</h2>
+                <p class="member-sub">— le Visionnaire</p>
+                <p class="member-bio">Passionné par l'éducation citoyenne et le développement communautaire. Diplômé en sciences sociales, il a consacré des années à l'accompagnement des jeunes, croyant fermement que chaque voix compte dans la construction d'un meilleur Madagascar.</p>
+                <div class="member-tags">
+                    <span class="tag">Leadership</span>
+                    <span class="tag">Sciences Sociales</span>
+                    <span class="tag">Éducation</span>
+                    <span class="tag">Communauté</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RADO -->
+        <div class="member-panel reveal">
+            <div class="member-visual">
+                <div class="portrait-wrap">
+                    <div class="portrait-rings">
+                        <div class="portrait-circle" aria-hidden="true">
+                            <!-- Briefcase -->
+                            <svg class="portrait-ico" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M10 12v2h4v-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-line"></div>
+                <div class="frame-number">FRAME 002 / 004</div>
+            </div>
+            <div class="member-content">
+                <div class="big-index">02</div>
+                <div class="member-meta">
+                    <span class="meta-line"></span>
+                    <span class="meta-label">Membre 02 / 04</span>
+                </div>
+                <div class="role-badge">● Secrétaire</div>
+                <h2 class="member-name">Rado</h2>
+                <p class="member-sub">— la Gardienne de la Terre</p>
+                <p class="member-bio">Spécialiste en environnement et développement durable, elle incarne l'amour de la nature malgache. Coordinatrice de nos programmes de sensibilisation écologique, elle rappelle à chacun que protéger la planète est un acte de courage.</p>
+                <div class="member-tags">
+                    <span class="tag">Environnement</span>
+                    <span class="tag">Développement Durable</span>
+                    <span class="tag">Coordination</span>
+                    <span class="tag">Sensibilisation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAINTY -->
+        <div class="member-panel reveal">
+            <div class="member-visual">
+                <div class="portrait-wrap">
+                    <div class="portrait-rings">
+                        <div class="portrait-circle" aria-hidden="true">
+                            <!-- Chalkboard / teaching -->
+                            <svg class="portrait-ico" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 5h16v12H4V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M7 9h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 19h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-line"></div>
+                <div class="frame-number">FRAME 003 / 004</div>
+            </div>
+            <div class="member-content">
+                <div class="big-index">03</div>
+                <div class="member-meta">
+                    <span class="meta-line"></span>
+                    <span class="meta-label">Membre 03 / 04</span>
+                </div>
+                <div class="role-badge">● R.M.C</div>
+                <h2 class="member-name">Mainty</h2>
+                <p class="member-sub">— l'Architecte du Savoir</p>
+                <p class="member-bio">Enseignant et formateur engagé dans l'éducation alternative, il croit que l'apprentissage peut transformer des vies. Concepteur de nos programmes pédagogiques, il bâtit des ponts entre le savoir et l'action concrète.</p>
+                <div class="member-tags">
+                    <span class="tag">Pédagogie</span>
+                    <span class="tag">Formation</span>
+                    <span class="tag">Éducation Alternative</span>
+                    <span class="tag">Ateliers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TSANTA -->
+        <div class="member-panel reveal">
+            <div class="member-visual">
+                <div class="portrait-wrap">
+                    <div class="portrait-rings">
+                        <div class="portrait-circle" aria-hidden="true">
+                            <!-- Flask / science -->
+                            <svg class="portrait-ico" viewBox="0 0 24 24" fill="none">
+                                <path d="M10 2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M10 2v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M8 14h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-line"></div>
+                <div class="frame-number">FRAME 004 / 004</div>
+            </div>
+            <div class="member-content">
+                <div class="big-index">04</div>
+                <div class="member-meta">
+                    <span class="meta-line"></span>
+                    <span class="meta-label">Membre 04 / 04</span>
+                </div>
+                <div class="role-badge">● Trésorière</div>
+                <h2 class="member-name">Tsanta</h2>
+                <p class="member-sub">— la Stratège</p>
+                <p class="member-bio">Gestionnaire de projets sociaux avec une expertise en mobilisation de ressources, elle veille à ce que chaque franc soit investi là où il crée le plus d'impact. Sa rigueur et sa vision permettent à nos initiatives de durer.</p>
+                <div class="member-tags">
+                    <span class="tag">Gestion de Projets</span>
+                    <span class="tag">Finance Sociale</span>
+                    <span class="tag">Mobilisation</span>
+                    <span class="tag">Stratégie</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ══ BANNER 2 ══ -->
+    <div class="section-banner blue-banner">
+        <div class="banner-track reverse" id="banner2"></div>
+    </div>
+
+    <!-- ══ CTA ══ -->
+    <section class="cta-section">
+        <div class="cta-ring cr1"></div>
+        <div class="cta-ring cr2"></div>
+        <div class="cta-ring cr3"></div>
+        <div class="cta-inner reveal">
+            <h2>Ensemble, nous bâtissons Madagascar</h2>
+            <p>i-Jery Lavitra</p>
+            <a href="index.html" class="btn-white">← Retour à l'accueil</a>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>i-Jery Lavitra</h3>
+            <p>Une association dédiée à la formation de la jeunesse malgache consciente, instruite et responsable.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Navigation</h3>
+            <a href="#vision">Notre Vision</a>
+            <a href="#actions">Nos Actions</a>
+            <a href="#impact">Notre Impact</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <p>i.jery.lavitra@gmail.com</p>
+          </div>
+          <div class="footer-section">
+            <h3>Réseaux</h3>
+            <a href="https://www.instagram.com/ijery_lavitra?igsh=MWowejVlNXN4cDRmZw==">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2025 i-Jery Lavitra. Tous droits réservés.</span>
+          <span>Antananrivo, Madagascar</span>
+        </div>
+      </footer>
+
+    <script>
+        // ── Marquee ──
+        const marqueeItems = ['i-Jery Lavitra', 'Vision · Sagesse · Avenir', 'Antsirabe · Madagascar', '2024 · Les Fondateurs', 'Jeunesse Consciente', 'Engagement · Solidarité'];
+        function buildMarquee(el, items) {
+            const doubled = [...items, ...items];
+            el.innerHTML = doubled.map(t => `<span class="marquee-item"><span class="m-dot"></span>${t}</span>`).join('');
+        }
+        buildMarquee(document.getElementById('topMarquee'), marqueeItems);
+
+        // ── Banners ──
+        const bannerItems = ['Mahefa · Président', 'Rado · Secrétaire', 'Mainty · R.M.C', 'Tsanta · Trésorière', 'Vision · Action · Impact'];
+        function buildBanner(el, items) {
+            const doubled = [...items, ...items];
+            el.innerHTML = doubled.map(t => `<span class="banner-item"><span class="banner-sep"></span>${t}</span>`).join('');
+        }
+        buildBanner(document.getElementById('banner1'), bannerItems);
+        buildBanner(document.getElementById('banner2'), ['i-Jery Lavitra · 2024', 'Ensemble pour Madagascar', 'Citoyenneté · Solidarité · Environnement', 'Rejoignez le Mouvement']);
+
+        // ── Scroll Reveal ──
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Fade in ──
+        document.body.style.opacity = '0';
+        window.addEventListener('load', () => {
+            document.body.style.transition = 'opacity 0.6s ease';
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>

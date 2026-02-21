@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i-Jery Lavitra — Vision & Avenir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ TOP MARQUEE ══ -->
+  <div class="marquee-bar">
+    <div class="marquee-track" id="topMarquee"></div>
+  </div>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <div class="logo-text">
+      <img src="../Logo.jpeg" alt="i-Jery Lavitra" class="nav-logo-img">
+      <div>
+        <h1>i-Jery Lavitra</h1>
+      </div>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#accueil">Accueil</a>
+      <a href="#vision">Vision</a>
+      <a href="#actions">Actions</a>
+      <a href="membres.html">Membres</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact" class="nav-cta">Nous Rejoindre</a>
+    </div>
+
+    <button class="mobile-menu" id="mobileMenu" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="accueil">
+    <div class="hero-floor"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+
+        <div class="hero-eyebrow">
+          <span class="pulse-dot"></span>
+          Association Jeunesse Malgache
+        </div>
+
+        <h2>Bâtir une <em>jeunesse</em> consciente &amp; responsable</h2>
+        <p>Nous formons les jeunes Malgaches à la citoyenneté, à la solidarité et à la protection de l'environnement pour un avenir durable.</p>
+
+        
+
+        <div class="hero-buttons">
+          <a href="#vision" class="btn-primary">Découvrir notre vision</a>
+          <a href="#contact" class="btn-outline">Rejoindre le mouvement</a>
+        </div>
+      </div>
+
+      <!-- Desktop hero card (hidden on mobile via CSS) -->
+      <div class="hero-visual-wrap">
+        <div class="hero-visual">
+          <div class="card-glow"></div>
+
+          <div class="orbit-tag ot-1">
+            <div class="ot-icon ot-blue" aria-hidden="true">
+              <!-- Education / Book -->
+              <svg class="ot-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4h12v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            Jeune formés
+          </div>
+          
+          <div class="orbit-tag ot-2">
+            <div class="ot-icon ot-green" aria-hidden="true">
+              <!-- Leaf / Environment -->
+              <svg class="ot-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M20 4s-8.5.5-12.5 4.5S3 20 3 20s7.5-.5 11.5-4.5S20 4 20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M7 17c2-4 6-7 11-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            Projets complet
+          </div>
+          
+          <div class="orbit-tag ot-3">
+            <div class="ot-icon ot-amber" aria-hidden="true">
+              <!-- Bolt / Action -->
+              <svg class="ot-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            Engagement
+          </div>
+          
+          <div class="orbit-tag ot-4">
+            <div class="ot-icon ot-rose" aria-hidden="true">
+              <!-- People / Solidarity -->
+              <svg class="ot-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M16 11a3 3 0 1 0-6 0c0 1.66 1.34 3 3 3s3-1.34 3-3Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20c1.2-3.6 4.4-6 8-6s6.8 2.4 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 10a2.5 2.5 0 1 0-5 0c0 1.38 1.12 2.5 2.5 2.5S7 11.38 7 10Z" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                <path d="M22 10a2.5 2.5 0 1 0-5 0c0 1.38 1.12 2.5 2.5 2.5S22 11.38 22 10Z" stroke="currentColor" stroke-width="2" opacity=".55"/>
+              </svg>
+            </div>
+            Solidarité
+          </div>
+
+          <div class="prime-card" id="primeCard">
+            <div class="card-rule"></div>
+            <div class="card-status">
+              <span class="cs-dot"></span>
+              Actif · Madagascar
+            </div>
+            <div class="card-metric">
+              <span class="metric-value">2026</span>
+              <span class="metric-label">Avenir Madagascar · Jeunesse consciente &amp; responsable</span>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-pillars">
+              <div class="pillar">
+                <span class="pillar-name">Citoyenneté</span>
+                <div class="pillar-track"><div class="pillar-fill"></div></div>
+                <span class="pillar-pct">88%</span>
+              </div>
+              <div class="pillar">
+                <span class="pillar-name">Environnement</span>
+                <div class="pillar-track"><div class="pillar-fill"></div></div>
+                <span class="pillar-pct">74%</span>
+              </div>
+              <div class="pillar">
+                <span class="pillar-name">Solidarité</span>
+                <div class="pillar-track"><div class="pillar-fill"></div></div>
+                <span class="pillar-pct">92%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ BANNER 1 ══ -->
+  <div class="section-banner">
+    <div class="banner-track" id="banner1"></div>
+  </div>
+
+  <!-- ══ VISION ══ -->
+  <section class="vision-section" id="vision">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">01 — Notre Vision</div>
+        <h2 class="section-title">Forger l'<span>Avenir</span></h2>
+        <p class="section-sub">Cliquez sur une touche pour explorer nos piliers fondamentaux</p>
+      </div>
+
+      <div class="keyboard-chassis reveal rd1">
+        <div class="chassis-label">I-JERY LAVITRA · VISION BOARD v2.0</div>
+        <div class="key-rows">
+          <div class="key-row">
+
+            <div class="keycap key-large" data-key="edu" tabindex="0" role="button" aria-pressed="false">
+              <div class="key-top">
+                <span class="key-legend">F1</span>
+                <span class="key-icon" aria-hidden="true">
+                  <svg class="key-ico" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 4h12v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M8 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div class="key-text">
+                  <span class="key-label">Pilier 01</span>
+                  <span class="key-title">Éducation<br/>Citoyenne</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="keycap key-large" data-key="env" tabindex="0" role="button" aria-pressed="false">
+              <div class="key-top">
+                <span class="key-legend">F2</span>
+                <span class="key-icon" aria-hidden="true">
+                  <svg class="key-ico" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 4s-8.5.5-12.5 4.5S3 20 3 20s7.5-.5 11.5-4.5S20 4 20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M7 17c2-4 6-7 11-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div class="key-text">
+                  <span class="key-label">Pilier 02</span>
+                  <span class="key-title">Conscience<br/>Environnementale</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="keycap key-large" data-key="sol" tabindex="0" role="button" aria-pressed="false">
+              <div class="key-top">
+                <span class="key-legend">F3</span>
+                <span class="key-icon" aria-hidden="true">
+                  <svg class="key-ico" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 12l3 3a2 2 0 0 0 3 0l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 10l4-4 4 4-4 4-4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M20 10l-4-4-4 4 4 4 4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div class="key-text">
+                  <span class="key-label">Pilier 03</span>
+                  <span class="key-title">Solidarité<br/>&amp; Altruisme</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="keycap key-large" data-key="eng" tabindex="0" role="button" aria-pressed="false">
+              <div class="key-top">
+                <span class="key-legend">F4</span>
+                <span class="key-icon" aria-hidden="true">
+                  <svg class="key-ico" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div class="key-text">
+                  <span class="key-label">Pilier 04</span>
+                  <span class="key-title">Engagement<br/>Communautaire</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="key-row">
+            <div class="keycap key-wide" data-key="man" tabindex="0" role="button" aria-pressed="false">
+              <div class="key-top key-top--wide">
+                <span class="key-legend">SPC</span>
+                <span class="key-icon key-icon--sm" aria-hidden="true">
+                  <svg class="key-ico key-ico--sm" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 4h10l-2 4 2 4H6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div class="key-text key-text--left">
+                  <span class="key-label">Notre Manifeste</span>
+                  <span class="key-title">Madagascar · Une jeunesse consciente &amp; responsable</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="key-detail-panel reveal rd2" id="keyDetailPanel">
+        <div class="detail-empty" id="detailEmpty">▸ TOUCHEZ UNE TOUCHE POUR EN SAVOIR PLUS</div>
+
+        <div class="detail-screen" id="detail-edu">
+          <div class="detail-head">
+            <span class="detail-icon" aria-hidden="true">
+              <svg class="detail-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4h12v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8 8h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="detail-title">Éducation Citoyenne</div>
+          </div>
+          <p class="detail-body">Nous formons les jeunes au respect, à la discipline, à la responsabilité et au sens de l'utilité collective. Comprendre les lois, respecter les autres et agir pour le bien commun. Une jeunesse instruite est une jeunesse libre.</p>
+        </div>
+
+        <div class="detail-screen" id="detail-env">
+          <div class="detail-head">
+            <span class="detail-icon" aria-hidden="true">
+              <svg class="detail-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M20 4s-8.5.5-12.5 4.5S3 20 3 20s7.5-.5 11.5-4.5S20 4 20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M7 17c2-4 6-7 11-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="detail-title">Conscience Environnementale</div>
+          </div>
+          <p class="detail-body">La protection de l'environnement commence par la connaissance et l'amour de la nature. Madagascar, avec sa biodiversité unique, mérite des gardiens conscients et engagés.</p>
+        </div>
+
+        <div class="detail-screen" id="detail-sol">
+          <div class="detail-head">
+            <span class="detail-icon" aria-hidden="true">
+              <svg class="detail-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M8 12l3 3a2 2 0 0 0 3 0l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 10l4-4 4 4-4 4-4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M20 10l-4-4-4 4 4 4 4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="detail-title">Solidarité &amp; Altruisme</div>
+          </div>
+          <p class="detail-body">Remettre au cœur de nos actions l'esprit d'entraide et la pensée collective. Être solidaire, c'est comprendre que la réussite individuelle dépend aussi de celle de la communauté.</p>
+        </div>
+
+        <div class="detail-screen" id="detail-eng">
+          <div class="detail-head">
+            <span class="detail-icon" aria-hidden="true">
+              <svg class="detail-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="detail-title">Engagement Communautaire</div>
+          </div>
+          <p class="detail-body">Nous encourageons les jeunes à devenir acteurs du changement dans leurs quartiers, écoles ou communes à travers des actions concrètes, visibles et durables.</p>
+        </div>
+
+        <div class="detail-screen" id="detail-man">
+          <div class="detail-head">
+            <span class="detail-icon" aria-hidden="true">
+              <svg class="detail-ico" viewBox="0 0 24 24" fill="none">
+                <path d="M6 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 4h10l-2 4 2 4H6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="detail-title">Notre Manifeste</div>
+          </div>
+          <p class="detail-body">i-Jery Lavitra croit en une génération malgache capable de réfléchir, d'agir et de construire. Notre mouvement n'est pas une promesse — c'est un engagement collectif pour l'avenir de Madagascar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BANNER 2 ══ -->
+  <div class="section-banner dark">
+    <div class="banner-track reverse" id="banner2"></div>
+  </div>
+
+  <!-- ══ ACTIONS ══ -->
+  <section class="actions-section" id="actions">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">02 — Nos Actions</div>
+        <h2 class="section-title">Axes d'<span>Action</span></h2>
+        <p class="section-sub">Quatre piliers pour transformer la jeunesse malgache</p>
+      </div>
+
+      <!-- Swipe hint (hidden on desktop via CSS) -->
+      <div class="actions-scroll-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Glissez pour découvrir
+      </div>
+
+      <div class="actions-scroll-wrap" id="actionsScrollWrap">
+
+        <div class="acard reveal rd1">
+          <div class="a-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="a-ico" fill="none">
+              <path d="M4 19.5V6.2c0-1 .8-1.8 1.8-1.8H20v15.2c0 .8-.7 1.4-1.5 1.4H6.2c-1.2 0-2.2-1-2.2-2.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 4.4v16.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="a-num">01</div>
+          <h3>Formation &amp; Éducation</h3>
+          <p>Programmes éducatifs pour développer la pensée critique et les compétences civiques.</p>
+          <div class="a-line"></div>
+        </div>
+
+        <div class="acard reveal rd2">
+          <div class="a-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="a-ico" fill="none">
+              <path d="M20 4s-8.5.5-12.5 4.5S3 20 3 20s7.5-.5 11.5-4.5S20 4 20 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M7 17c2-4 6-7 11-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="a-num">02</div>
+          <h3>Projets Environnementaux</h3>
+          <p>Initiatives concrètes pour la protection de l'environnement et le développement durable.</p>
+          <div class="a-line"></div>
+        </div>
+
+        <div class="acard reveal rd3">
+          <div class="a-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="a-ico" fill="none">
+              <path d="M8 12l3 3a2 2 0 0 0 3 0l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 10l4-4 4 4-4 4-4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M20 10l-4-4-4 4 4 4 4-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="a-num">03</div>
+          <h3>Actions Solidaires</h3>
+          <p>Programmes d'entraide et de soutien aux communautés locales vulnérables.</p>
+          <div class="a-line"></div>
+        </div>
+
+        <div class="acard reveal rd4">
+          <div class="a-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="a-ico" fill="none">
+              <path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="a-num">04</div>
+          <h3>Engagement Local</h3>
+          <p>Projets communautaires menés par et pour les jeunes dans leurs quartiers.</p>
+          <div class="a-line"></div>
+        </div>
+
+      </div>
+
+      <!-- Progress dots for mobile swipe -->
+      <div class="actions-dots" id="actionsDots" aria-hidden="true">
+        <span class="adot active"></span>
+        <span class="adot"></span>
+        <span class="adot"></span>
+        <span class="adot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BANNER 3 ══ -->
+  <div class="section-banner accent">
+    <div class="banner-track" id="banner3"></div>
+  </div>
+
+  <!-- ══ IMPACT ══ -->
+  <section class="impact-section" id="impact">
+    <div class="floating-nums" id="floatingNums"></div>
+    <div class="container impact-inner">
+      <div class="section-header reveal">
+        <div class="eyebrow">03 — Notre Impact visée</div>
+        <h2 class="section-title">Notre <span>Impact</span> Visée</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal rd1">
+          <span class="stat-number" data-target="500">0</span>
+          <div class="stat-label">Jeunes formés</div>
+        </div>
+        <div class="stat-card reveal rd2">
+          <span class="stat-number" data-target="25">0</span>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat-card reveal rd3">
+          <span class="stat-number" data-target="10">0</span>
+          <div class="stat-label">Communautés touchées</div>
+        </div>
+        <div class="stat-card reveal rd4">
+          <span class="stat-number" data-target="100">0</span>
+          <div class="stat-label">% d'Engagement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BANNER 4 ══ -->
+  <div class="section-banner">
+    <div class="banner-track reverse" id="banner4"></div>
+  </div>
+
+  <!-- ══ MEMBERS ══ -->
+  <section class="members-section" id="membres">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">04 — L'Équipe</div>
+        <h2 class="section-title">Membres <span>Fondateurs</span></h2>
+        <p class="section-sub">L'équipe passionnée qui a donné vie à i-Jery Lavitra</p>
+      </div>
+
+      <div class="carousel-wrap">
+        <div class="stack-ghost sg2"></div>
+        <div class="stack-ghost sg1"></div>
+
+        <!-- Swipe hint -->
+        <div class="swipe-hint" aria-hidden="true">
+          ← Glissez pour naviguer →
+        </div>
+
+        <div class="carousel-track" id="carouselTrack">
+          <div class="mcard active">
+            <div class="m-avatar">1/4</div>
+            <div class="m-name">Mahefa</div>
+            <div class="m-role">Président</div>
+            <p class="m-bio">Passionné par l'éducation citoyenne et le développement communautaire.</p>
+          </div>
+          <div class="mcard">
+            <div class="m-avatar">2/4</div>
+            <div class="m-name">Rado</div>
+            <div class="m-role">Secrétaire</div>
+            <p class="m-bio">Spécialiste en environnement et développement durable.</p>
+          </div>
+          <div class="mcard">
+            <div class="m-avatar">3/4</div>
+            <div class="m-name">Mainty</div>
+            <div class="m-role">R.M.C</div>
+            <p class="m-bio">Enseignant et formateur engagé dans l'éducation alternative.</p>
+          </div>
+          <div class="mcard">
+            <div class="m-avatar">4/4</div>
+            <div class="m-name">Tsanta</div>
+            <div class="m-role">Trésorier</div>
+            <p class="m-bio">Gestionnaire de projets sociaux avec une expertise en mobilisation de ressources.</p>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="cbtn" id="prevBtn" aria-label="Précédent">‹</button>
+          <button class="cbtn" id="nextBtn" aria-label="Suivant">›</button>
+        </div>
+
+        <div class="cdots" id="cdots" role="tablist">
+          <span class="dot active" role="tab"></span>
+          <span class="dot" role="tab"></span>
+          <span class="dot" role="tab"></span>
+          <span class="dot" role="tab"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>i-Jery Lavitra</h3>
+        <p>Une association dédiée à la formation de la jeunesse malgache consciente, instruite et responsable.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <a href="#vision">Notre Vision</a>
+        <a href="#actions">Nos Actions</a>
+        <a href="#impact">Notre Impact</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>i.jery.lavitra@gmail.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Réseaux</h3>
+        <a href="https://www.instagram.com/ijery_lavitra?igsh=MWowejVlNXN4cDRmZw==">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 i-Jery Lavitra. Tous droits réservés.</span>
+      <span>Antananrivo, Madagascar</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
