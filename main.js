@@ -1,4 +1,4 @@
-/* i-Jery Lavitra — main.js (Mobile-first complete) */
+/* i-Jery Lavitra — main.js */
 
 // ─── PAGE LOAD FADE IN ───────────────────────
 document.body.style.opacity = '0';
@@ -32,35 +32,68 @@ buildBanner(document.getElementById('banner2'), b2Items);
 buildBanner(document.getElementById('banner3'), b3Items);
 buildBanner(document.getElementById('banner4'), [...b1Items].reverse());
 
-// ─── MOBILE NAVIGATION ───────────────────────
+// ─── MOBILE SIDEBAR NAV ───────────────────────
 const mobileMenu = document.getElementById('mobileMenu');
 const navLinks   = document.getElementById('navLinks');
 
-mobileMenu?.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('active');
-  mobileMenu.classList.toggle('open', isOpen);
-  mobileMenu.setAttribute('aria-expanded', String(isOpen));
+function openSidebar() {
+  navLinks.classList.add('active');
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden'; // lock scroll
+}
+
+function closeSidebar() {
+  navLinks.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = ''; // restore scroll
+}
+
+function toggleSidebar() {
+  if (navLinks.classList.contains('active')) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+}
+
+mobileMenu?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleSidebar();
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+// Close when clicking a nav link
+document.querySelectorAll('#navLinks a').forEach(a => {
   a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior:'smooth' });
-      navLinks.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      mobileMenu.setAttribute('aria-expanded','false');
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      closeSidebar();
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 50);
+      }
+    } else {
+      closeSidebar();
     }
   });
 });
 
+// Close when clicking outside the sidebar (on the backdrop)
 document.addEventListener('click', e => {
-  if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
-    navLinks.classList.remove('active');
-    mobileMenu.classList.remove('open');
-    mobileMenu.setAttribute('aria-expanded','false');
+  if (
+    navLinks.classList.contains('active') &&
+    !navLinks.contains(e.target) &&
+    !mobileMenu.contains(e.target)
+  ) {
+    closeSidebar();
   }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeSidebar();
 });
 
 // ─── SCROLL REVEAL ───────────────────────────
@@ -93,7 +126,7 @@ if (impactSection) statsObs.observe(impactSection);
 // ─── FLOATING BG NUMBERS ─────────────────────
 const fnContainer = document.getElementById('floatingNums');
 if (fnContainer) {
-  ['500','25+','10','100%','2024'].forEach((val, idx) => {
+  ['500','25+','10','100%','2024'].forEach((val) => {
     for (let i = 0; i < 2; i++) {
       const fn = document.createElement('div');
       fn.className = 'fnum';
@@ -108,7 +141,7 @@ if (fnContainer) {
 }
 
 // ─── KEYBOARD / KEYCAP ───────────────────────
-const keycaps   = document.querySelectorAll('.keycap');
+const keycaps    = document.querySelectorAll('.keycap');
 const detailEmpty = document.getElementById('detailEmpty');
 
 function setActiveKey(keyId) {
@@ -253,7 +286,22 @@ window.addEventListener('scroll', () => {
   }
 }, { passive:true });
 
-// ─── HERO VISUAL (desktop only) ──────────────
-// Styles for the prime card visual are in style.css
-// Card-glow, orbit tags, pillar bars, card-caption
-// These rules still apply from previous CSS block
+// ─── SCROLL TO TOP ────────────────────────────
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+const SCROLL_THRESHOLD = 320; // px before the button appears
+
+if (scrollTopBtn) {
+  // Show / hide on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  // Scroll back to top on click
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}

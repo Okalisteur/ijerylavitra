@@ -16,13 +16,13 @@
       --muted:       #5f6f8a;
       --off:         #f4f6ff;
       --border:      rgba(26,86,240,.12);
-      --mh:          36px;  /* marquee height */
-      --nh:          64px;  /* nav height */
+      --mh:          36px;
+      --nh:          64px;
 
-      --c1: #1a56f0;  /* Mahefa — blue */
-      --c2: #00b87c;  /* Rado — green */
-      --c3: #e08020;  /* Mainty — amber */
-      --c4: #8b5cf6;  /* Tsanta — violet */
+      --c1: #1a56f0;
+      --c2: #00b87c;
+      --c3: #e08020;
+      --c4: #8b5cf6;
     }
 
     *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
@@ -39,9 +39,7 @@
     img,svg { display:block; }
     a { text-decoration:none; }
 
-    /* ══════════════════════════════════════════
-       MARQUEE
-    ══════════════════════════════════════════ */
+    /* ══ MARQUEE ══ */
     .marquee-bar {
       position:fixed; top:0; left:0; right:0; z-index:1100;
       height:var(--mh); overflow:hidden; display:flex; align-items:center;
@@ -63,9 +61,7 @@
     }
     .mdot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.45); }
 
-    /* ══════════════════════════════════════════
-       NAV
-    ══════════════════════════════════════════ */
+    /* ══ NAV ══ */
     nav {
       position:fixed; top:var(--mh); left:0; right:0; z-index:1000;
       height:var(--nh); padding:0 1.5rem;
@@ -75,15 +71,12 @@
       border-bottom:1px solid var(--border);
     }
     .logo { display:flex; align-items:center; gap:.6rem; }
-    .logo-dot {
-      width:34px; height:34px; border-radius:10px;
-      background:linear-gradient(135deg,var(--blue),#3b82f6);
-      display:flex; align-items:center; justify-content:center;
-      flex-shrink:0;
+    .logo-img {
+      width:36px; height:36px; border-radius:10px;
+      object-fit:cover; flex-shrink:0;
+      box-shadow:0 4px 12px rgba(26,86,240,.18);
     }
-    .logo-dot svg { width:18px; height:18px; color:#fff; }
     .logo-name { font-size:1rem; font-weight:900; color:var(--blue); letter-spacing:-.3px; }
-    .logo-sub  { font-family:'JetBrains Mono',monospace; font-size:.42rem; color:var(--green); letter-spacing:1.8px; margin-top:1px; }
 
     .nav-back {
       display:inline-flex; align-items:center; gap:.5rem;
@@ -97,9 +90,7 @@
     .nav-back:hover { color:var(--blue); border-color:rgba(26,86,240,.3); transform:translateY(-1px); }
     .nav-back svg { width:14px; height:14px; flex-shrink:0; }
 
-    /* ══════════════════════════════════════════
-       HERO
-    ══════════════════════════════════════════ */
+    /* ══ HERO ══ */
     .hero {
       min-height:100svh;
       padding:calc(var(--mh) + var(--nh) + 3rem) 1.5rem 4rem;
@@ -149,7 +140,7 @@
       animation:fu .7s .4s ease both;
     }
 
-    /* Member count pills */
+    /* Member pills — now clickable */
     .hero-members {
       display:flex; justify-content:center; gap:.7rem; flex-wrap:wrap;
       animation:fu .7s .55s ease both;
@@ -160,7 +151,23 @@
       border-radius:14px; padding:.55rem 1rem;
       box-shadow:0 4px 16px rgba(12,22,48,.08),0 1px 0 rgba(255,255,255,.9) inset;
       font-size:.78rem; font-weight:700; color:var(--text);
+      /* Make them feel interactive */
+      cursor:pointer;
+      transition:transform .22s cubic-bezier(.34,1.56,.64,1),
+                 box-shadow .22s ease,
+                 border-color .22s ease;
+      text-decoration:none;
     }
+    .hm-pill:hover {
+      transform:translateY(-4px) scale(1.04);
+      box-shadow:0 12px 32px rgba(12,22,48,.13),0 1px 0 rgba(255,255,255,.9) inset;
+    }
+    .hm-pill:nth-child(1):hover { border-color:rgba(26,86,240,.35); }
+    .hm-pill:nth-child(2):hover { border-color:rgba(0,184,124,.35); }
+    .hm-pill:nth-child(3):hover { border-color:rgba(224,128,32,.35); }
+    .hm-pill:nth-child(4):hover { border-color:rgba(139,92,246,.35); }
+    .hm-pill:active { transform:scale(.97); }
+
     .hm-ring {
       width:28px; height:28px; border-radius:8px;
       display:flex; align-items:center; justify-content:center;
@@ -171,9 +178,15 @@
     .r3 { background:rgba(224,128,32,.12); color:var(--c3); }
     .r4 { background:rgba(139,92,246,.12); color:var(--c4); }
 
+    /* Arrow hint on pills */
+    .hm-arrow {
+      font-size:.7rem; opacity:.4;
+      transition:opacity .2s, transform .2s;
+    }
+    .hm-pill:hover .hm-arrow { opacity:.8; transform:translateY(2px); }
+
     @keyframes fu { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
 
-    /* Scroll cue */
     .scroll-cue {
       position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
       display:flex; flex-direction:column; align-items:center; gap:.4rem;
@@ -184,15 +197,13 @@
     @keyframes sw { 0%{transform:translateY(0);opacity:1}100%{transform:translateY(10px);opacity:0} }
     .sc-label { font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:2.2px;color:var(--muted); }
 
-    /* ══════════════════════════════════════════
-       BANNER
-    ══════════════════════════════════════════ */
+    /* ══ BANNER ══ */
     .sect-banner {
       height:46px; overflow:hidden;
       background:var(--off); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
       display:flex; align-items:center;
     }
-    .sect-banner.dark { background:var(--text); }
+    .sect-banner.dark   { background:var(--text); }
     .sect-banner.accent { background:var(--blue); }
     .btrack { display:flex; align-items:center; white-space:nowrap; animation:bs 22s linear infinite; }
     .btrack.rev { animation:bsr 22s linear infinite; }
@@ -204,39 +215,34 @@
       letter-spacing:2px; text-transform:uppercase;
       color:var(--muted); padding:0 1.5rem; font-weight:600;
     }
-    .sect-banner.dark .bitem { color:rgba(255,255,255,.45); }
+    .sect-banner.dark .bitem   { color:rgba(255,255,255,.45); }
     .sect-banner.accent .bitem { color:rgba(255,255,255,.88); }
     .bsep { width:16px;height:1px;background:currentColor;opacity:.3; }
 
-    /* ══════════════════════════════════════════
-       MEMBER CARDS — the big editorial sections
-    ══════════════════════════════════════════ */
+    /* ══ MEMBER CARDS ══ */
     .members { padding:0; }
 
-    /* Each member is a full-bleed section */
     .mc {
       display:grid;
       grid-template-columns:1fr;
       position:relative;
       overflow:hidden;
       border-bottom:1px solid var(--border);
+      /* anchor scroll offset so the fixed nav doesn't cover the section */
+      scroll-margin-top:calc(var(--mh) + var(--nh));
     }
 
-    /* Color theming per member */
     .mc[data-c="1"] { --cc:var(--c1); --clight:rgba(26,86,240,.08); --cmid:rgba(26,86,240,.18); }
     .mc[data-c="2"] { --cc:var(--c2); --clight:rgba(0,184,124,.08);  --cmid:rgba(0,184,124,.18);  }
     .mc[data-c="3"] { --cc:var(--c3); --clight:rgba(224,128,32,.08); --cmid:rgba(224,128,32,.18); }
     .mc[data-c="4"] { --cc:var(--c4); --clight:rgba(139,92,246,.08); --cmid:rgba(139,92,246,.18); }
 
-    /* ── Visual panel ── */
     .mc-visual {
       position:relative; min-height:380px;
       display:flex; align-items:center; justify-content:center;
       background:var(--clight);
       overflow:hidden;
     }
-
-    /* Large chapter number behind everything */
     .mc-bg-num {
       position:absolute; right:-4vw; top:50%; transform:translateY(-50%);
       font-family:'Playfair Display',serif;
@@ -246,8 +252,6 @@
       pointer-events:none; user-select:none;
       white-space:nowrap;
     }
-
-    /* Grid texture */
     .mc-visual::before {
       content:''; position:absolute; inset:0; pointer-events:none;
       background-image:
@@ -256,7 +260,6 @@
       background-size:40px 40px; opacity:.25;
     }
 
-    /* Avatar circle */
     .av-wrap { position:relative; z-index:2; }
     .av-rings { position:relative; width:200px; height:200px; display:flex; align-items:center; justify-content:center; }
     .av-rings::before {
@@ -270,7 +273,6 @@
       animation:spin 44s linear infinite reverse;
     }
     @keyframes spin { to{transform:rotate(360deg)} }
-
     .av-circle {
       width:200px; height:200px; border-radius:50%;
       display:flex; align-items:center; justify-content:center;
@@ -286,10 +288,7 @@
     }
     .av-ico { width:80px; height:80px; color:var(--cc); position:relative; z-index:1; filter:drop-shadow(0 8px 18px var(--cmid)); }
 
-    /* Floating accent tags */
-    .av-tags {
-      position:absolute; inset:0; pointer-events:none; z-index:3;
-    }
+    .av-tags { position:absolute; inset:0; pointer-events:none; z-index:3; }
     .av-tag {
       position:absolute;
       display:inline-flex; align-items:center; gap:.4rem;
@@ -309,31 +308,24 @@
     @keyframes tf1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
     @keyframes tf2 { 0%,100%{transform:translateY(0) translateX(0)} 50%{transform:translateY(-6px) translateX(4px)} }
 
-    /* Frame label */
     .mc-frame {
       position:absolute; bottom:14px; left:16px; z-index:3;
       font-family:'JetBrains Mono',monospace; font-size:.46rem;
       letter-spacing:2.5px; color:var(--cc); opacity:.35;
     }
-
-    /* Accent line bottom of visual */
     .mc-vline {
       position:absolute; bottom:0; left:0; right:0; height:3px;
       background:linear-gradient(90deg,transparent,var(--cc),transparent);
     }
 
-    /* ── Content panel ── */
     .mc-content {
       padding:3rem 1.5rem 3.5rem;
       position:relative; background:#fff;
     }
-    /* Top border accent */
     .mc-content::before {
       content:''; position:absolute; top:0; left:1.5rem; right:1.5rem; height:1px;
       background:linear-gradient(90deg,transparent,var(--cmid),transparent);
     }
-
-    /* Chapter index */
     .mc-index {
       font-family:'JetBrains Mono',monospace;
       font-size:.56rem; letter-spacing:3px; text-transform:uppercase;
@@ -341,8 +333,6 @@
       display:flex; align-items:center; gap:.8rem; margin-bottom:1.4rem;
     }
     .mc-index-line { flex:1; max-width:48px; height:1px; background:var(--cc); opacity:.3; }
-
-    /* Role badge */
     .mc-role {
       display:inline-flex; align-items:center; gap:.45rem;
       font-family:'JetBrains Mono',monospace; font-size:.58rem;
@@ -352,29 +342,19 @@
       padding:.3rem .85rem; margin-bottom:1rem; font-weight:700;
     }
     .mc-role-dot { width:5px;height:5px;border-radius:50%;background:var(--cc); }
-
-    /* Name */
     .mc-name {
       font-family:'Playfair Display',serif;
       font-size:clamp(2.6rem,9vw,4rem);
       font-weight:900; letter-spacing:-1.5px;
       color:var(--text); line-height:1; margin-bottom:.4rem;
     }
-    /* Subtitle */
-    .mc-sub {
-      font-size:.92rem; color:var(--muted); font-style:italic;
-      margin-bottom:1.6rem;
-    }
-
-    /* Bio */
+    .mc-sub { font-size:.92rem; color:var(--muted); font-style:italic; margin-bottom:1.6rem; }
     .mc-bio {
       font-size:.9rem; line-height:1.85; color:var(--muted);
       margin-bottom:2rem; max-width:56ch;
       border-left:2.5px solid var(--cmid);
       padding-left:1rem;
     }
-
-    /* Tags */
     .mc-tags { display:flex; flex-wrap:wrap; gap:.45rem; }
     .mc-tag {
       font-family:'JetBrains Mono',monospace; font-size:.54rem;
@@ -383,45 +363,18 @@
       background:var(--off); border:1px solid var(--border);
       color:var(--muted); transition:all .22s;
     }
-    .mc:hover .mc-tag {
-      background:var(--clight); border-color:var(--cmid); color:var(--cc);
-    }
+    .mc:hover .mc-tag { background:var(--clight); border-color:var(--cmid); color:var(--cc); }
 
-    /* ══════════════════════════════════════════
-       REVEAL ANIMATIONS
-    ══════════════════════════════════════════ */
+    /* ══ REVEAL ══ */
     .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s ease,transform .8s ease; }
     .reveal.vis { opacity:1; transform:none; }
-    .rev-left { opacity:0; transform:translateX(-30px); transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1); }
-    .rev-left.vis { opacity:1; transform:none; }
-    .rev-right { opacity:0; transform:translateX(30px); transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1); }
-    .rev-right.vis { opacity:1; transform:none; }
     .rd1 { transition-delay:.05s; }
     .rd2 { transition-delay:.15s; }
     .rd3 { transition-delay:.25s; }
     .rd4 { transition-delay:.35s; }
     .rd5 { transition-delay:.45s; }
 
-    /* ══════════════════════════════════════════
-       STATS STRIP between sections
-    ══════════════════════════════════════════ */
-    .stats-strip {
-      background:var(--text); padding:2.5rem 1.5rem;
-      display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem;
-    }
-    .ss-item { text-align:center; }
-    .ss-num {
-      font-family:'Playfair Display',serif;
-      font-size:2.8rem; font-weight:900;
-      background:linear-gradient(135deg,var(--blue),var(--green));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text; display:block; line-height:1; margin-bottom:.3rem;
-    }
-    .ss-label { font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.38); }
-
-    /* ══════════════════════════════════════════
-       CTA
-    ══════════════════════════════════════════ */
+    /* ══ CTA ══ */
     .cta {
       background:linear-gradient(135deg,var(--blue) 0%,#2563eb 60%,#1e40af 100%);
       text-align:center; padding:5rem 1.5rem;
@@ -454,9 +407,7 @@
     }
     .btn-white:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 24px 60px rgba(0,0,0,.28); }
 
-    /* ══════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════ */
+    /* ══ FOOTER ══ */
     footer { background:var(--text); padding:3.5rem 1.5rem 2rem; }
     .footer-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:1200px; margin:0 auto; }
     .fsec h3 { font-size:.76rem; font-weight:800; color:#fff; letter-spacing:.4px; margin-bottom:.9rem; }
@@ -469,41 +420,25 @@
       text-align:center; font-size:.7rem; color:rgba(255,255,255,.2);
     }
 
-    /* ══════════════════════════════════════════
-       DESKTOP ≥900px
-    ══════════════════════════════════════════ */
+    /* ══ DESKTOP ≥900px ══ */
     @media(min-width:900px) {
       nav { padding:0 3rem; }
-
       .hero { min-height:92svh; }
-
-      /* Two-column member panel */
       .mc { grid-template-columns:1fr 1fr; min-height:580px; }
-      /* Alternate layout: even panels flip */
       .mc:nth-child(even) .mc-visual  { order:2; }
       .mc:nth-child(even) .mc-content { order:1; }
-
       .mc-visual { min-height:unset; }
       .mc-bg-num { right:-2vw; font-size:clamp(10rem,20vw,18rem); }
-
       .av-rings { width:240px; height:240px; }
       .av-circle { width:240px; height:240px; }
       .av-ico { width:96px; height:96px; }
       .at1 { top:18%; right:8%; }
       .at2 { bottom:18%; left:6%; }
       .at3 { top:55%; right:4%; }
-
       .mc-content { padding:5rem 5rem; }
       .mc-content::before { left:0; top:15%; bottom:15%; width:1px; height:auto; right:auto; background:linear-gradient(to bottom,transparent,var(--cmid),transparent); }
       .mc:nth-child(even) .mc-content::before { left:auto; right:0; }
-
       .mc-name { font-size:clamp(3rem,5vw,4.5rem); }
-
-      .stats-strip { grid-template-columns:repeat(4,1fr); gap:0; }
-      .ss-item { padding:2rem; border-right:1px solid rgba(255,255,255,.08); }
-      .ss-item:last-child { border-right:none; }
-      .ss-num { font-size:3.5rem; }
-
       .footer-grid { grid-template-columns:repeat(4,1fr); gap:3rem; }
       .foot-bot { flex-direction:row; justify-content:space-between; }
     }
@@ -524,13 +459,8 @@
   <!-- NAV -->
   <nav>
     <div class="logo">
-      <div class="logo-dot">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7v5c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V7l-8-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-      </div>
-      <div>
-        <div class="logo-name">i-Jery Lavitra</div>
-        <div class="logo-sub">// LES FONDATEURS</div>
-      </div>
+      <img src="Logo.jpeg" alt="i-Jery Lavitra" class="logo-img">
+      <div class="logo-name">i-Jery Lavitra</div>
     </div>
     <a href="index.html" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -547,11 +477,29 @@
       <div class="hero-pill"><span class="pdot"></span> i-Jery Lavitra · Antananarivo · 2024</div>
       <h1 class="hero-title">L'Équipe <em>Fondatrice</em></h1>
       <p class="hero-sub">Quatre âmes unies par une vision commune — construire une jeunesse malgache consciente, instruite et responsable.</p>
+
+      <!-- Clickable pills — each scrolls to the matching member section -->
       <div class="hero-members">
-        <div class="hm-pill"><span class="hm-ring r1">01</span> Mahefa</div>
-        <div class="hm-pill"><span class="hm-ring r2">02</span> Rado</div>
-        <div class="hm-pill"><span class="hm-ring r3">03</span> Mainty</div>
-        <div class="hm-pill"><span class="hm-ring r4">04</span> Tsanta</div>
+        <a href="#member-mahefa" class="hm-pill">
+          <span class="hm-ring r1">01</span>
+          Mahefa
+          <span class="hm-arrow">↓</span>
+        </a>
+        <a href="#member-rado" class="hm-pill">
+          <span class="hm-ring r2">02</span>
+          Rado
+          <span class="hm-arrow">↓</span>
+        </a>
+        <a href="#member-herytoky" class="hm-pill">
+          <span class="hm-ring r3">03</span>
+          HeryToky
+          <span class="hm-arrow">↓</span>
+        </a>
+        <a href="#member-tsanta" class="hm-pill">
+          <span class="hm-ring r4">04</span>
+          Tsanta
+          <span class="hm-arrow">↓</span>
+        </a>
       </div>
     </div>
     <div class="scroll-cue">
@@ -569,7 +517,7 @@
   <section class="members">
 
     <!-- ── 01 MAHEFA ── -->
-    <div class="mc" data-c="1">
+    <div class="mc" data-c="1" id="member-mahefa">
       <div class="mc-visual">
         <div class="mc-bg-num">01</div>
         <div class="av-wrap reveal rd1">
@@ -607,7 +555,7 @@
     </div>
 
     <!-- ── 02 RADO ── -->
-    <div class="mc" data-c="2">
+    <div class="mc" data-c="2" id="member-rado">
       <div class="mc-visual">
         <div class="mc-bg-num">02</div>
         <div class="av-wrap reveal rd1">
@@ -632,7 +580,7 @@
         <div class="mc-index reveal rd1"><span class="mc-index-line"></span>Membre 02 / 04<span class="mc-index-line"></span></div>
         <div class="mc-role reveal rd2"><span class="mc-role-dot"></span>Secrétaire</div>
         <h2 class="mc-name reveal rd2">Rado</h2>
-        <p class="mc-sub reveal rd3">- le Secrétaire</p>
+        <p class="mc-sub reveal rd3">— le Secrétaire</p>
         <p class="mc-bio reveal rd3">Spécialiste en environnement et développement durable, elle incarne l'amour de la nature malgache. Coordinatrice de nos programmes de sensibilisation écologique, elle rappelle à chacun que protéger la planète est un acte de courage.</p>
         <div class="mc-tags reveal rd4">
           <span class="mc-tag">Environnement</span>
@@ -643,8 +591,8 @@
       </div>
     </div>
 
-    <!-- ── 03 MAINTY ── -->
-    <div class="mc" data-c="3">
+    <!-- ── 03 HERYTOKY ── -->
+    <div class="mc" data-c="3" id="member-herytoky">
       <div class="mc-visual">
         <div class="mc-bg-num">03</div>
         <div class="av-wrap reveal rd1">
@@ -683,7 +631,7 @@
     </div>
 
     <!-- ── 04 TSANTA ── -->
-    <div class="mc" data-c="4">
+    <div class="mc" data-c="4" id="member-tsanta">
       <div class="mc-visual">
         <div class="mc-bg-num">04</div>
         <div class="av-wrap reveal rd1">
@@ -720,7 +668,6 @@
     </div>
 
   </section>
-
 
   <!-- BANNER 2 -->
   <div class="sect-banner accent">
@@ -772,19 +719,17 @@
 
   <script>
     /* ── Fade in ── */
-    window.addEventListener('load', () => {
-      document.body.classList.add('ready');
-    });
+    window.addEventListener('load', () => document.body.classList.add('ready'));
 
     /* ── Marquee ── */
-    const mqItems = ['i-Jery Lavitra','L\'Équipe Fondatrice','Antananarivo · 2024','Vision & Avenir','Mahefa · Rado · Mainty · Tsanta','Jeunesse Consciente'];
+    const mqItems = ['i-Jery Lavitra','L\'Équipe Fondatrice','Antananarivo · 2024','Vision & Avenir','Mahefa · Rado · HeryToky · Tsanta','Jeunesse Consciente'];
     function buildMQ(el, items) {
       el.innerHTML = [...items,...items].map(t => `<span class="marquee-item"><span class="mdot"></span>${t}</span>`).join('');
     }
     buildMQ(document.getElementById('mq'), mqItems);
 
     /* ── Banners ── */
-    const b1Items = ['Mahefa · Président','Rado · Secrétaire','Mainty · R.M.C','Tsanta · Trésorière','Vision · Action · Impact'];
+    const b1Items = ['Mahefa · Président','Rado · Secrétaire','HeryToky · R.M.C','Tsanta · Trésorière','Vision · Action · Impact'];
     const b2Items = ['i-Jery Lavitra · 2024','Ensemble pour Madagascar','Citoyenneté · Solidarité · Environnement','Rejoignez le Mouvement'];
     function buildBanner(el, items) {
       el.innerHTML = [...items,...items].map(t => `<span class="bitem"><span class="bsep"></span>${t}</span>`).join('');
@@ -792,34 +737,26 @@
     buildBanner(document.getElementById('b1'), b1Items);
     buildBanner(document.getElementById('b2'), b2Items);
 
+    /* ── Smooth scroll for pill links (accounts for fixed header offset) ── */
+    document.querySelectorAll('a[href^="#member-"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--mh')) +
+                       parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nh'));
+        const top = target.getBoundingClientRect().top + window.scrollY - offset - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
     /* ── Scroll reveal ── */
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal,.rev-left,.rev-right').forEach(el => ro.observe(el));
-
-    /* ── Counter animation ── */
-    const co = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('.ss-num').forEach(el => {
-          const target = +el.dataset.target;
-          const suffix = target === 100 ? '%' : '+';
-          let n = 0;
-          const step = target / 70;
-          const t = setInterval(() => {
-            n = Math.min(n + step, target);
-            el.textContent = Math.floor(n) + suffix;
-            if (n >= target) clearInterval(t);
-          }, 20);
-        });
-        co.unobserve(entry.target);
-      });
-    }, { threshold: 0.5 });
-    const strip = document.querySelector('.stats-strip');
-    if (strip) co.observe(strip);
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
     /* ── Parallax ghost numbers on mouse move (desktop) ── */
     if (window.matchMedia('(min-width:900px)').matches) {
@@ -827,7 +764,7 @@
         const num = panel.querySelector('.mc-bg-num');
         panel.addEventListener('mousemove', e => {
           const r = panel.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
+          const x = (e.clientX - r.left) / r.width  - 0.5;
           const y = (e.clientY - r.top)  / r.height - 0.5;
           if (num) num.style.transform = `translateY(calc(-50% + ${y * 18}px)) translateX(${x * 10}px)`;
         });
